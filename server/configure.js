@@ -9,6 +9,7 @@ const path = require('path'),
 	morgan = require('morgan'),
 	methodOverride = require('method-override'),
 	errorHandler = require('errorhandler');
+	moment = require('moment');
 
 module.exports = (app)=>{
 	app.use(morgan('dev'));
@@ -20,10 +21,16 @@ module.exports = (app)=>{
 			'../public')));
 	app.engine('handlebars', exphbs.create({
 		defaultLayout: 'main',
-		layoutsDir: `${app.get('Views')}/layouts`,
-		partialsDir: [`${appt.get('Views')}/partials`]
+		layoutsDir:  `${app.get('views')}/layouts`,
+		partialsDir: [ `${app.get('views')}/partials`],
+		helpers: {
+			timeago: (timestamp)=>{
+				return moment(timestamp).startOf('minute').fromNow();
+			}
+		}
 	}).engine);
-	app.set('View engine', 'handlebars');
+	app.set('view engine', 'handlebars');
+		
 
 if ('development' === app.get('env')) {
 	app.use(errorHandler());
