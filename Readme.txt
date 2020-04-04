@@ -3,13 +3,13 @@ echo "# CursoNode" >> README.md
 git init
 git add README.md
 git commit -m "first commit"
-git remote add origin https://github.com/Thimisul/CursoNode.git
+git remote add origin https://github.com/Thimisul/CursoMongoNode.git
 git push -u origin master
                 
 
 
 …or push an existing repository from the command line
-git remote add origin https://github.com/Thimisul/CursoNode.git
+git remote add origin https://github.com/Thimisul/CursoMongoNode.git
 git push -u origin master
 
 
