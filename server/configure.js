@@ -10,12 +10,16 @@ const path = require('path'),
 	methodOverride = require('method-override'),
 	errorHandler = require('errorhandler');
 	moment = require('moment');
+	multer = require('multer');
 
 module.exports = (app)=>{
 	app.use(morgan('dev'));
 	app.use(bodyParser.urlencoded({'extended':true}));
 	app.use(methodOverride());
 	app.use(cookieParser('some-secret-value-here'));
+	app.use(multer({
+		dest: path.join(__dirname, 'public/upload/temp')
+	}))
 	routes(app); // movendo as rotas para a pasta routes
 	app.use('/public/', express.static(path.join(__dirname,
 			'../public')));
